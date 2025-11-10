@@ -218,7 +218,7 @@
         </div>
     </div>
 
-    <script>
+<script>
         document.getElementById('calculate-btn').addEventListener('click', calculateRisk);
         document.getElementById('preop_va').addEventListener('input', updateVaHelper);
 
@@ -256,7 +256,6 @@
         // ---
 
         // Model 1: 90-Day Success (Primary Surgeries Only, N=4952)
-        // Note: This model did *not* use VA or Lens Status, as they were too sparse in this subset.
         const sssCoeffs = {
             'const': 1.1430,
             'Age': -0.0031,
@@ -354,7 +353,6 @@
             // ===================================
             
             // --- SSS Calculation (Model 1) ---
-            // This model is for PRIMARY surgeries.
             let sssLogOdds = sssCoeffs.const;
             sssLogOdds += sssCoeffs.Age * inputs.age;
             sssLogOdds += sssCoeffs.gender_Male * inputs.gender_Male;
@@ -382,8 +380,15 @@
             vaLogMar += vaCoeffs.Age * inputs.age;
             vaLogMar += vaCoeffs.VA_LogMAR_PreOp * inputs.preop_va;
             vaLogMar += vaCoeffs.RF_is_Diabetes * inputs.diabetes;
-            // Note: We use 0 for SurgeryRank as Model 3 didn't use it.
-            // vaLogMar += vaCoeffs.SurgeryRank * (inputs.surgery_rank - 1); 
+
+            // *** THIS IS THE FIX ***
+            // The predicted VA cannot be worse than the starting VA.
+            // If the model's prediction is worse, just use the starting VA.
+            if (inputs.preop_va < vaLogMar) {
+                vaLogMar = inputs.preop_va;
+            }
+            // *** END FIX ***
+            
             vaLogMar = Math.max(0, vaLogMar); // Cap at 20/20 (LogMAR 0)
             vaLogMar = Math.min(3.0, vaLogMar); // Cap at NLP (LogMAR 3.0)
             
@@ -420,7 +425,6 @@
             // Show SSS result
             document.getElementById('result-sss').textContent = `${(sssProbability * 100).toFixed(0)}%`;
             
-            // Add a note if the SSS model isn't designed for this rank
             const sssNote = document.getElementById('sss-model-note');
             if (inputs.surgery_rank == 1) {
                 sssNote.textContent = "(Based on model for primary surgeries)";
