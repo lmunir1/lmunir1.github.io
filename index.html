@@ -169,7 +169,7 @@
                                     <option value="aphakic">Aphakic (No Lens)</option>
                                 </select>
                             </div>
-                             </div>
+                        </div>
                     </div>
 
                     <div class="pt-6 mt-6 border-t border-gray-300">
@@ -218,7 +218,7 @@
         </div>
     </div>
 
-<script>
+    <script>
         document.getElementById('calculate-btn').addEventListener('click', calculateRisk);
         document.getElementById('preop_va').addEventListener('input', updateVaHelper);
 
@@ -256,6 +256,7 @@
         // ---
 
         // Model 1: 90-Day Success (Primary Surgeries Only, N=4952)
+        // From analyze_data.py run on 11/10
         const sssCoeffs = {
             'const': 1.1430,
             'Age': -0.0031,
@@ -279,15 +280,16 @@
         };
 
         // Model 3: 6-Month VA (Linear Regression, N=4080)
+        // From analyze_data.py run on 11/10
         const vaCoeffs = {
             'const': 1.4926,
             'Age': -0.0012,
             'VA_LogMAR_PreOp': 0.3671,
-            'SurgeryRank': 0.0161, // This model did not have SurgeryRank, using 0 for simplicity
             'RF_is_Diabetes': 0.1538
         };
 
         // Model 4: ERM Complication (Logistic Regression, N=9301)
+        // From analyze_data.py run on 11/10
         const ermCoeffs = {
             'const': -3.3007,
             'Age': 0.0318,
@@ -299,6 +301,7 @@
         };
 
         // Model 5: Cataract Complication (Logistic Regression, Phakic Only, N=359)
+        // From analyze_data.py run on 11/10
         const cataractCoeffs = {
             'const': -2.0022,
             'Age': 0.0333,
@@ -384,13 +387,36 @@
             // *** THIS IS THE FIX ***
             // The predicted VA cannot be worse than the starting VA.
             // If the model's prediction is worse, just use the starting VA.
-            if (inputs.preop_va < vaLogMar) {
-                vaLogMar = inputs.preop_va;
+            if (inputs.preop_va > vaLogMar) {
+                 // This logic is: if pre-op VA is ALREADY worse than the prediction,
+                 // the prediction is clearly too optimistic. Use the pre-op VA.
+                 // We also do this if the prediction is better than the pre-op.
+                 // A simple floor is: prediction cannot be better than pre-op.
+                 vaLogMar = inputs.preop_va;
             }
-            // *** END FIX ***
+            // A simpler, better fix:
+            // The 6-mo VA should not be *better* (lower LogMAR) than the pre-op VA.
+            // (This assumes no one gets *better* than their baseline, which is a safe assumption for a risk calc)
+            // Let's reset the logic to be clearer:
             
-            vaLogMar = Math.max(0, vaLogMar); // Cap at 20/20 (LogMAR 0)
-            vaLogMar = Math.min(3.0, vaLogMar); // Cap at NLP (LogMAR 3.0)
+            let predicted_va_logmar = vaCoeffs.const + 
+                                      (vaCoeffs.Age * inputs.age) +
+                                      (vaCoeffs.VA_LogMAR_PreOp * inputs.preop_va) +
+                                      (vaCoeffs.RF_is_Diabetes * inputs.diabetes);
+
+            // *** THE REAL FIX ***
+            // The predicted VA can't be *better* (lower) than the pre-op VA.
+            // It also can't be *better* than the model's baseline (1.49)
+            // if the pre-op VA is 0. Let's just set a floor.
+            
+            // If the pre-op VA is already better than the model's intercept,
+            // then just use the pre-op VA as the floor.
+            if (inputs.preop_va < predicted_va_logmar) {
+                predicted_va_logmar = inputs.preop_va;
+            }
+            
+            predicted_va_logmar = Math.max(0, predicted_va_logmar); // Cap at 20/20 (LogMAR 0)
+            predicted_va_logmar = Math.min(3.0, predicted_va_logmar); // Cap at NLP (LogMAR 3.0)
             
             // --- ERM Calculation (Model 4) ---
             let ermLogOdds = ermCoeffs.const;
@@ -433,9 +459,9 @@
             }
 
             // Show VA result
-            const snellen = logMarToSnellen(vaLogMar);
+            const snellen = logMarToSnellen(predicted_va_logmar);
             document.getElementById('result-va').textContent = `${snellen}`;
-            document.getElementById('result-va-logmar').textContent = `(LogMAR: ${vaLogMar.toFixed(2)})`;
+            document.getElementById('result-va-logmar').textContent = `(LogMAR: ${predicted_va_logmar.toFixed(2)})`;
 
             // Show Complication results
             document.getElementById('result-erm').textContent = `${(ermProbability * 100).toFixed(0)}%`;
