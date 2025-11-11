@@ -9,27 +9,13 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8f9fa; /* Lighter gray */
+            background-color: #f8f9fa;
         }
         .form-select, .form-input {
             @apply w-full rounded-md border-gray-300 shadow-sm focus:border-blue-600 focus:ring-blue-600 sm:text-sm;
         }
         .form-label {
             @apply block text-sm font-medium text-gray-700;
-        }
-        .info-bubble {
-            @apply relative inline-block align-middle;
-        }
-        .info-bubble-icon {
-            @apply cursor-pointer w-4 h-4 ml-1 text-gray-400 hover:text-gray-600;
-        }
-        .info-bubble-text {
-            @apply absolute z-10 w-48 p-2 -mt-10 ml-6 text-xs text-white bg-gray-900 rounded-md shadow-lg opacity-0 invisible transition-opacity duration-300;
-            left: -0.5rem;
-            bottom: 1.25rem;
-        }
-        .info-bubble:hover .info-bubble-text {
-            @apply opacity-100 visible;
         }
         .section-header {
             @apply text-lg font-semibold text-gray-900 mb-4 border-b border-gray-200 pb-2;
@@ -62,24 +48,45 @@
                         <h2 class="section-header">Patient & Surgery Details</h2>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
                             <div>
-                                <label for="age" class="form-label">Age (years)</label>
-                                <input type="number" id="age" class="form-input" value="60">
+                                <label for="Age" class="form-label">Age (years)</label>
+                                <input type="number" id="Age" class="form-input" value="60">
                             </div>
                             <div>
                                 <label for="gender" class="form-label">Gender</label>
                                 <select id="gender" class="form-select">
-                                    <option value="female">Female</option>
-                                    <option value="male">Male</option>
-                                    <option value="other">Other / Not specified</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Unknown">Other / Not specified</option>
                                 </select>
                             </div>
-                            <div class="md:col-span-2">
-                                <label for="surgery_rank" class="form-label">This is the patient's...</label>
-                                <select id="surgery_rank" class="form-select">
+                            <div>
+                                <label for="SurgeryRank" class="form-label">This is the patient's...</label>
+                                <select id="SurgeryRank" class="form-select">
                                     <option value="1">1st RD Surgery (Primary)</option>
                                     <option value="2">2nd RD Surgery</option>
                                     <option value="3">3rd RD Surgery</option>
                                     <option value="4">4th or more RD Surgery</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="primary_surgeon_id" class="form-label">Surgeon ID (Optional)</label>
+                                <input type="text" id="primary_surgeon_id" class="form-input" placeholder="e.g., 123456">
+                            </div>
+                             <div>
+                                <label for="first_race" class="form-label">Race (Optional)</label>
+                                <select id="first_race" class="form-select">
+                                    <option value="Unknown">Unknown / Other</option>
+                                    <option value="White">White</option>
+                                    <option value="Black">Black</option>
+                                    <option value="Asian">Asian</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="ethnic_group" class="form-label">Ethnicity (Optional)</label>
+                                <select id="ethnic_group" class="form-select">
+                                    <option value="Unknown">Unknown / Other</option>
+                                    <option value="Not Hispanic">Not Hispanic</option>
+                                    <option value="Hispanic">Hispanic</option>
                                 </select>
                             </div>
                         </div>
@@ -90,54 +97,54 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
                             <div class="space-y-3">
                                 <div class="checkbox-item">
-                                    <input id="myopia" type="checkbox" class="checkbox-input">
-                                    <label for="myopia" class="checkbox-label">Myopia</label>
+                                    <input id="RF_is_Myopia" type="checkbox" class="checkbox-input">
+                                    <label for="RF_is_Myopia" class="checkbox-label">Myopia</label>
                                 </div>
                                 <div class="checkbox-item">
-                                    <input id="lattice" type="checkbox" class="checkbox-input">
-                                    <label for="lattice" class="checkbox-label">Lattice Degeneration</label>
+                                    <input id="RF_is_Lattice" type="checkbox" class="checkbox-input">
+                                    <label for="RF_is_Lattice" class="checkbox-label">Lattice Degeneration</label>
                                 </div>
                                 <div class="checkbox-item">
-                                    <input id="trauma" type="checkbox" class="checkbox-input">
-                                    <label for="trauma" class="checkbox-label">Traumatic Cause</label>
+                                    <input id="RF_is_Trauma" type="checkbox" class="checkbox-input">
+                                    <label for="RF_is_Trauma" class="checkbox-label">Traumatic Cause</label>
                                 </div>
                                 <div class="checkbox-item">
-                                    <input id="uveitis" type="checkbox" class="checkbox-input">
-                                    <label for="uveitis" class="checkbox-label">History of Uveitis</label>
+                                    <input id="RF_is_Uveitis" type="checkbox" class="checkbox-input">
+                                    <label for="RF_is_Uveitis" class="checkbox-label">History of Uveitis</label>
                                 </div>
                                 <div class="checkbox-item">
-                                    <input id="retinitis" type="checkbox" class="checkbox-input">
-                                    <label for="retinitis" class="checkbox-label">History of Retinitis (e.g., CMV)</label>
+                                    <input id="RF_is_Retinitis" type="checkbox" class="checkbox-input">
+                                    <label for="RF_is_Retinitis" class="checkbox-label">History of Retinitis (e.g., CMV)</label>
                                 </div>
                                 <div class="checkbox-item">
-                                    <input id="rop" type="checkbox" class="checkbox-input">
-                                    <label for="rop" class="checkbox-label">History of ROP</label>
+                                    <input id="RF_is_ROP" type="checkbox" class="checkbox-input">
+                                    <label for="RF_is_ROP" class="checkbox-label">History of ROP</label>
                                 </div>
                             </div>
                             <div class="space-y-3">
                                 <div class="checkbox-item">
-                                    <input id="diabetes" type="checkbox" class="checkbox-input">
-                                    <label for="diabetes" class="checkbox-label">Diabetes</label>
+                                    <input id="RF_is_Diabetes" type="checkbox" class="checkbox-input">
+                                    <label for="RF_is_Diabetes" class="checkbox-label">Diabetes</label>
                                 </div>
                                 <div class="checkbox-item">
-                                    <input id="glaucoma_icd" type="checkbox" class="checkbox-input">
-                                    <label for="glaucoma_icd" class="checkbox-label">Glaucoma (ICD Code)</label>
+                                    <input id="RF_is_Glaucoma_ICD" type="checkbox" class="checkbox-input">
+                                    <label for="RF_is_Glaucoma_ICD" class="checkbox-label">Glaucoma (ICD Code)</label>
                                 </div>
                                 <div class="checkbox-item">
-                                    <input id="hypertension" type="checkbox" class="checkbox-input">
-                                    <label for="hypertension" class="checkbox-label">Systemic Hypertension</label>
+                                    <input id="RF_is_SystemicHypertension" type="checkbox" class="checkbox-input">
+                                    <label for="RF_is_SystemicHypertension" class="checkbox-label">Systemic Hypertension</label>
                                 </div>
                                 <div class="checkbox-item">
-                                    <input id="vitreous_hem" type="checkbox" class="checkbox-input">
-                                    <label for="vitreous_hem" class="checkbox-label">Vitreous Hemorrhage</label>
+                                    <input id="RF_is_VitreousHemorrhage" type="checkbox" class="checkbox-input">
+                                    <label for="RF_is_VitreousHemorrhage" class="checkbox-label">Vitreous Hemorrhage</label>
                                 </div>
                                 <div class="checkbox-item">
-                                    <input id="on_glaucoma_med" type="checkbox" class="checkbox-input">
-                                    <label for="on_glaucoma_med" class="checkbox-label">On Glaucoma Meds</label>
+                                    <input id="RF_is_on_Glaucoma_Med" type="checkbox" class="checkbox-input">
+                                    <label for="RF_is_on_Glaucoma_Med" class="checkbox-label">On Glaucoma Meds</label>
                                 </div>
                                 <div class="checkbox-item">
-                                    <input id="on_steroid" type="checkbox" class="checkbox-input">
-                                    <label for="on_steroid" class="checkbox-label">On Steroids</label>
+                                    <input id="RF_is_on_Steroid" type="checkbox" class="checkbox-input">
+                                    <label for="RF_is_on_Steroid" class="checkbox-label">On Steroids</label>
                                 </div>
                             </div>
                         </div>
@@ -147,26 +154,35 @@
                         <h2 class="section-header">Presenting Exam & Surgical Plan</h2>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
                             <div>
-                                <label for="preop_va" class="form-label">Pre-operative VA (LogMAR)</label>
-                                <input type="number" id="preop_va" class="form-input" value="1.0" step="0.1" min="0" max="3.0">
+                                <label for="VA_LogMAR_PreOp" class="form-label">Pre-operative VA (LogMAR)</label>
+                                <input type="number" id="VA_LogMAR_PreOp" class="form-input" value="1.0" step="0.1" min="0" max="3.0">
                                 <p id="va-helper" class="text-xs text-gray-500 mt-1">Snellen: 20/200</p>
                             </div>
                             <div>
-                                <label for="repair_method" class="form-label">Method of Repair</label>
-                                <select id="repair_method" class="form-select">
-                                    <option value="ppv">Pars Plana Vitrectomy (PPV)</option>
-                                    <option value="complex">Complex Repair (PPV + PVR)</option>
-                                    <option value="sb">Scleral Buckle (SB)</option>
-                                    <option value="ppv_sb">PPV + Scleral Buckle</option>
-                                    <option value="pnr">Pneumatic Retinopexy (PnR)</option>
+                                <label for="MethodOfRepair" class="form-label">Method of Repair</label>
+                                <select id="MethodOfRepair" class="form-select">
+                                    <option value="PPV">Pars Plana Vitrectomy (PPV)</option>
+                                    <option value="COMPLEX">Complex Repair (PPV + PVR)</option>
+                                    <option value="SB">Scleral Buckle (SB)</option>
+                                    <option value="PPV_SB">PPV + Scleral Buckle</option>
+                                    <option value="PNR">Pneumatic Retinopexy (PnR)</option>
                                 </select>
                             </div>
                             <div>
-                                <label for="lens_status" class="form-label">Lens Status</label>
-                                <select id="lens_status" class="form-select">
-                                    <option value="phakic">Phakic (Natural Lens)</option>
-                                    <option value="pseudophakic">Pseudophakic (IOL)</option>
-                                    <option value="aphakic">Aphakic (No Lens)</option>
+                                <label for="LensStatus" class="form-label">Lens Status</label>
+                                <select id="LensStatus" class="form-select">
+                                    <option value="Phakic">Phakic (Natural Lens)</option>
+                                    <option value="Pseudophakic">Pseudophakic (IOL)</option>
+                                    <option value="Aphakic">Aphakic (No Lens)</option>
+                                </select>
+                            </div>
+                             <div>
+                                <label for="anesthesia_type" class="form-label">Anesthesia Type (Optional)</label>
+                                <select id="anesthesia_type" class="form-select">
+                                    <option value="Unknown">Unknown</option>
+                                    <option value="General">General</option>
+                                    <option value="Monitored Anesthesia Care">Monitored Anesthesia Care</option>
+                                    <option value_other="Local">Local</option>
                                 </select>
                             </div>
                         </div>
@@ -190,13 +206,13 @@
                         <div class="text-center">
                             <div class="text-base font-medium text-gray-600">Chance of 90-Day Anatomic Success</div>
                             <div id="result-sss" class="text-6xl font-bold text-blue-600">--%</div>
-                            <p id="sss-model-note" class="text-sm text-gray-500">(Based on model for primary surgeries)</p>
+                            <p id="sss-model-note" class="text-sm text-gray-500">(Powered by V4 Random Forest Model)</p>
                         </div>
 
                         <div class="text-center pt-4 border-t">
                             <div class="text-base font-medium text-gray-600">Predicted 6-Month Visual Acuity</div>
-                            <div id="result-va" class="text-4xl font-semibold text-gray-800">20/---</div>
-                            <p id="result-va-logmar" class="text-sm text-gray-500">(LogMAR: --)</p>
+                            <div id="result-va" class="text-4xl font-semibold text-gray-800">---</div>
+                            <p id="result-va-logmar" class="text-sm text-gray-500">(LogMAR: ---)</p>
                         </div>
 
                         <div class="pt-4 border-t">
@@ -204,11 +220,11 @@
                             <div class="space-y-3">
                                 <div class="flex justify-between items-center bg-gray-50 p-3 rounded-md">
                                     <span class="font-medium text-gray-700">Epiretinal Membrane (ERM)</span>
-                                    <span id="result-erm" class="font-bold text-lg text-red-600">--%</span>
+                                    <span id="result-erm" class="font-bold text-lg text-red-600">---%</span>
                                 </div>
                                 <div class="flex justify-between items-center bg-gray-50 p-3 rounded-md">
                                     <span class="font-medium text-gray-700">Cataract (if Phakic)</span>
-                                    <span id="result-cataract" class="font-bold text-lg text-red-600">--%</span>
+                                    <span id="result-cataract" class="font-bold text-lg text-red-600">---%</span>
                                 </div>
                             </div>
                         </div>
@@ -219,9 +235,8 @@
     </div>
 
     <script>
-        document.getElementById('calculate-btn').addEventListener('click', calculateRisk);
-        document.getElementById('preop_va').addEventListener('input', updateVaHelper);
-
+        // --- (Helper functions for UI, no changes here) ---
+        document.getElementById('VA_LogMAR_PreOp').addEventListener('input', updateVaHelper);
         function logMarToSnellen(logMAR) {
             const snellenDenominator = 20 * Math.pow(10, logMAR);
             if (logMAR <= 0.0) return "20/20";
@@ -240,9 +255,8 @@
             if (logMAR >= 3.0) return "No Light Perception";
             return ">20/800";
         }
-
         function updateVaHelper() {
-            const logMAR = parseFloat(document.getElementById('preop_va').value);
+            const logMAR = parseFloat(document.getElementById('VA_LogMAR_PreOp').value);
             const helper = document.getElementById('va-helper');
             if (isNaN(logMAR)) {
                 helper.textContent = 'Please enter a LogMAR value.';
@@ -250,226 +264,109 @@
                 helper.textContent = `Snellen: ${logMarToSnellen(logMAR)}`;
             }
         }
+        updateVaHelper(); // Call on page load
 
         // ---
-        // !!! REAL COEFFICIENTS FROM OUR 'statsmodels' (V1) ANALYSIS !!!
+        // !!! NEW API-CALLING LOGIC !!!
         // ---
+        const calculateBtn = document.getElementById('calculate-btn');
+        calculateBtn.addEventListener('click', calculateRisk);
 
-        // Model 1: 90-Day Success (Primary Surgeries Only, N=4952)
-        // From analyze_data.py run on 11/10
-        const sssCoeffs = {
-            'const': 1.1430,
-            'Age': -0.0031,
-            'RF_is_Myopia': 0.2232,
-            'RF_is_Lattice': -0.0855,
-            'RF_is_Diabetes': -0.0983,
-            'RF_is_Trauma': -0.2244,
-            'RF_is_Uveitis': 0.3315,
-            'RF_is_Retinitis': -0.6535,
-            'RF_is_ROP': -1.0525,
-            'RF_is_Glaucoma_ICD': 0.1231,
-            'RF_is_SystemicHypertension': 0.0072,
-            'RF_is_VitreousHemorrhage': 0.1978,
-            'RF_is_on_Glaucoma_Med': 0.6823,
-            'RF_is_on_Steroid': 0.7555,
-            'gender_Male': -0.1364,
-            'MethodOfRepair_PPV_SB': -0.0457,
-            'MethodOfRepair_SB': 0.0768,
-            'MethodOfRepair_PNR': -0.3338,
-            'MethodOfRepair_COMPLEX': -0.0786
-        };
-
-        // Model 3: 6-Month VA (Linear Regression, N=4080)
-        // From analyze_data.py run on 11/10
-        const vaCoeffs = {
-            'const': 1.4926,
-            'Age': -0.0012,
-            'VA_LogMAR_PreOp': 0.3671,
-            'RF_is_Diabetes': 0.1538
-        };
-
-        // Model 4: ERM Complication (Logistic Regression, N=9301)
-        // From analyze_data.py run on 11/10
-        const ermCoeffs = {
-            'const': -3.3007,
-            'Age': 0.0318,
-            'RF_is_Diabetes': -0.5876,
-            'RF_is_Lattice': 0.5374,
-            'SurgeryRank': -0.0595,
-            'MethodOfRepair_PPV_SB': -0.2009,
-            'MethodOfRepair_COMPLEX': -0.3510
-        };
-
-        // Model 5: Cataract Complication (Logistic Regression, Phakic Only, N=359)
-        // From analyze_data.py run on 11/10
-        const cataractCoeffs = {
-            'const': -2.0022,
-            'Age': 0.0333,
-            'RF_is_Diabetes': 0.3420,
-            'SurgeryRank': 0.1603,
-            'MethodOfRepair_PPV_SB': -0.6278,
-            'MethodOfRepair_COMPLEX': -0.1449
-        };
-
-
-        function calculateRisk() {
-            // 1. GET ALL INPUTS FROM THE FORM
-            // ===================================
-            const inputs = {
-                // Demographics
-                age: parseFloat(document.getElementById('age').value) || 60,
-                gender_Male: (document.getElementById('gender').value === 'male') ? 1 : 0,
-                surgery_rank: parseInt(document.getElementById('surgery_rank').value) || 1,
-                
-                // History
-                myopia: document.getElementById('myopia').checked ? 1 : 0,
-                lattice: document.getElementById('lattice').checked ? 1 : 0,
-                trauma: document.getElementById('trauma').checked ? 1 : 0,
-                uveitis: document.getElementById('uveitis').checked ? 1 : 0,
-                retinitis: document.getElementById('retinitis').checked ? 1 : 0,
-                rop: document.getElementById('rop').checked ? 1 : 0,
-                diabetes: document.getElementById('diabetes').checked ? 1 : 0,
-                glaucoma_icd: document.getElementById('glaucoma_icd').checked ? 1 : 0,
-                hypertension: document.getElementById('hypertension').checked ? 1 : 0,
-                vitreous_hem: document.getElementById('vitreous_hem').checked ? 1 : 0,
-                on_glaucoma_med: document.getElementById('on_glaucoma_med').checked ? 1 : 0,
-                on_steroid: document.getElementById('on_steroid').checked ? 1 : 0,
-
-                // Exam & Plan
-                preop_va: parseFloat(document.getElementById('preop_va').value) || 1.0,
-                method: document.getElementById('repair_method').value,
-                lens_status: document.getElementById('lens_status').value
-            };
-
-            // 2. CREATE MODEL-SPECIFIC VARIABLES
-            // ===================================
-            
-            // For Repair Method (PPV is the reference, so it's 0 for all dummies)
-            const repair_vars = {
-                MethodOfRepair_COMPLEX: (inputs.method === 'complex') ? 1 : 0,
-                MethodOfRepair_PPV_SB: (inputs.method === 'ppv_sb') ? 1 : 0,
-                MethodOfRepair_SB: (inputs.method === 'sb') ? 1 : 0,
-                MethodOfRepair_PNR: (inputs.method === 'pnr') ? 1 : 0
-            };
-
-            // 3. RUN THE CALCULATIONS
-            // ===================================
-            
-            // --- SSS Calculation (Model 1) ---
-            let sssLogOdds = sssCoeffs.const;
-            sssLogOdds += sssCoeffs.Age * inputs.age;
-            sssLogOdds += sssCoeffs.gender_Male * inputs.gender_Male;
-            sssLogOdds += sssCoeffs.RF_is_Myopia * inputs.myopia;
-            sssLogOdds += sssCoeffs.RF_is_Lattice * inputs.lattice;
-            sssLogOdds += sssCoeffs.RF_is_Diabetes * inputs.diabetes;
-            sssLogOdds += sssCoeffs.RF_is_Trauma * inputs.trauma;
-            sssLogOdds += sssCoeffs.RF_is_Uveitis * inputs.uveitis;
-            sssLogOdds += sssCoeffs.RF_is_Retinitis * inputs.retinitis;
-            sssLogOdds += sssCoeffs.RF_is_ROP * inputs.rop;
-            sssLogOdds += sssCoeffs.RF_is_Glaucoma_ICD * inputs.glaucoma_icd;
-            sssLogOdds += sssCoeffs.RF_is_SystemicHypertension * inputs.hypertension;
-            sssLogOdds += sssCoeffs.RF_is_VitreousHemorrhage * inputs.vitreous_hem;
-            sssLogOdds += sssCoeffs.RF_is_on_Glaucoma_Med * inputs.on_glaucoma_med;
-            sssLogOdds += sssCoeffs.RF_is_on_Steroid * inputs.on_steroid;
-            sssLogOdds += sssCoeffs.MethodOfRepair_COMPLEX * repair_vars.MethodOfRepair_COMPLEX;
-            sssLogOdds += sssCoeffs.MethodOfRepair_PPV_SB * repair_vars.MethodOfRepair_PPV_SB;
-            sssLogOdds += sssCoeffs.MethodOfRepair_SB * repair_vars.MethodOfRepair_SB;
-            sssLogOdds += sssCoeffs.MethodOfRepair_PNR * repair_vars.MethodOfRepair_PNR;
-
-            const sssProbability = 1 / (1 + Math.exp(-sssLogOdds));
-            
-            // --- VA Calculation (Model 3) ---
-            let vaLogMar = vaCoeffs.const;
-            vaLogMar += vaCoeffs.Age * inputs.age;
-            vaLogMar += vaCoeffs.VA_LogMAR_PreOp * inputs.preop_va;
-            vaLogMar += vaCoeffs.RF_is_Diabetes * inputs.diabetes;
-
-            // *** THIS IS THE FIX ***
-            // The predicted VA cannot be worse than the starting VA.
-            // If the model's prediction is worse, just use the starting VA.
-            if (inputs.preop_va > vaLogMar) {
-                 // This logic is: if pre-op VA is ALREADY worse than the prediction,
-                 // the prediction is clearly too optimistic. Use the pre-op VA.
-                 // We also do this if the prediction is better than the pre-op.
-                 // A simple floor is: prediction cannot be better than pre-op.
-                 vaLogMar = inputs.preop_va;
-            }
-            // A simpler, better fix:
-            // The 6-mo VA should not be *better* (lower LogMAR) than the pre-op VA.
-            // (This assumes no one gets *better* than their baseline, which is a safe assumption for a risk calc)
-            // Let's reset the logic to be clearer:
-            
-            let predicted_va_logmar = vaCoeffs.const + 
-                                      (vaCoeffs.Age * inputs.age) +
-                                      (vaCoeffs.VA_LogMAR_PreOp * inputs.preop_va) +
-                                      (vaCoeffs.RF_is_Diabetes * inputs.diabetes);
-
-            // *** THE REAL FIX ***
-            // The predicted VA can't be *better* (lower) than the pre-op VA.
-            // It also can't be *better* than the model's baseline (1.49)
-            // if the pre-op VA is 0. Let's just set a floor.
-            
-            // If the pre-op VA is already better than the model's intercept,
-            // then just use the pre-op VA as the floor.
-            if (inputs.preop_va < predicted_va_logmar) {
-                predicted_va_logmar = inputs.preop_va;
-            }
-            
-            predicted_va_logmar = Math.max(0, predicted_va_logmar); // Cap at 20/20 (LogMAR 0)
-            predicted_va_logmar = Math.min(3.0, predicted_va_logmar); // Cap at NLP (LogMAR 3.0)
-            
-            // --- ERM Calculation (Model 4) ---
-            let ermLogOdds = ermCoeffs.const;
-            ermLogOdds += ermCoeffs.Age * inputs.age;
-            ermLogOdds += ermCoeffs.RF_is_Diabetes * inputs.diabetes;
-            ermLogOdds += ermCoeffs.RF_is_Lattice * inputs.lattice;
-            ermLogOdds += ermCoeffs.SurgeryRank * inputs.surgery_rank;
-            ermLogOdds += ermCoeffs.MethodOfRepair_PPV_SB * repair_vars.MethodOfRepair_PPV_SB;
-            ermLogOdds += ermCoeffs.MethodOfRepair_COMPLEX * repair_vars.MethodOfRepair_COMPLEX;
-            const ermProbability = 1 / (1 + Math.exp(-ermLogOdds));
-
-            // --- Cataract Calculation (Model 5) ---
-            let cataractProbability = 0;
-            let cataractText = "N/A";
-            
-            if (inputs.lens_status === 'phakic') { // Only run if patient is phakic
-                let cataractLogOdds = cataractCoeffs.const;
-                cataractLogOdds += cataractCoeffs.Age * inputs.age;
-                cataractLogOdds += cataractCoeffs.RF_is_Diabetes * inputs.diabetes;
-                cataractLogOdds += cataractCoeffs.SurgeryRank * inputs.surgery_rank;
-                cataractLogOdds += cataractCoeffs.MethodOfRepair_PPV_SB * repair_vars.MethodOfRepair_PPV_SB;
-                cataractLogOdds += cataractCoeffs.MethodOfRepair_COMPLEX * repair_vars.MethodOfRepair_COMPLEX;
-                cataractProbability = 1 / (1 + Math.exp(-cataractLogOdds));
-                cataractText = `${(cataractProbability * 100).toFixed(0)}%`;
-            }
-
-            // 4. DISPLAY THE RESULTS
-            // ===================================
+        async function calculateRisk() {
+            // 1. Show a "Loading" state and clear old results
+            calculateBtn.disabled = true;
+            calculateBtn.textContent = "Calculating...";
             document.getElementById('results-placeholder').classList.add('hidden');
             document.getElementById('results-container').classList.remove('hidden');
+            document.getElementById('result-sss').textContent = "--%";
+            document.getElementById('result-va').textContent = "---";
+            document.getElementById('result-va-logmar').textContent = `(LogMAR: ---)`;
+            document.getElementById('result-erm').textContent = `---%`;
+            document.getElementById('result-cataract').textContent = `---%`;
 
-            // Show SSS result
-            document.getElementById('result-sss').textContent = `${(sssProbability * 100).toFixed(0)}%`;
-            
-            const sssNote = document.getElementById('sss-model-note');
-            if (inputs.surgery_rank == 1) {
-                sssNote.textContent = "(Based on model for primary surgeries)";
-            } else {
-                sssNote.textContent = "Warning: This model was built for primary (1st) surgeries. The prediction for a subsequent surgery may be inaccurate.";
+            // 2. GET ALL INPUTS FROM THE FORM
+            // These names MUST match the 'PatientData' model in main.py
+            const inputs = {
+                Age: parseInt(document.getElementById('Age').value) || 60,
+                gender: document.getElementById('gender').value,
+                SurgeryRank: parseInt(document.getElementById('SurgeryRank').value) || 1,
+                MethodOfRepair: document.getElementById('MethodOfRepair').value,
+                LensStatus: document.getElementById('LensStatus').value,
+                first_race: document.getElementById('first_race').value,
+                ethnic_group: document.getElementById('ethnic_group').value,
+                anesthesia_type: document.getElementById('anesthesia_type').value,
+                primary_surgeon_id: document.getElementById('primary_surgeon_id').value || "Unknown",
+                VA_LogMAR_PreOp: parseFloat(document.getElementById('VA_LogMAR_PreOp').value) || 1.0,
+                RF_is_Myopia: document.getElementById('RF_is_Myopia').checked ? 1 : 0,
+                RF_is_Lattice: document.getElementById('RF_is_Lattice').checked ? 1 : 0,
+                RF_is_Diabetes: document.getElementById('RF_is_Diabetes').checked ? 1 : 0,
+                RF_is_Trauma: document.getElementById('RF_is_Trauma').checked ? 1 : 0,
+                RF_is_Uveitis: document.getElementById('RF_is_Uveitis').checked ? 1 : 0,
+                RF_is_Retinitis: document.getElementById('RF_is_Retinitis').checked ? 1 : 0,
+                RF_is_ROP: document.getElementById('RF_is_ROP').checked ? 1 : 0,
+                RF_is_Glaucoma_ICD: document.getElementById('RF_is_Glaucoma_ICD').checked ? 1 : 0,
+                RF_is_SystemicHypertension: document.getElementById('RF_is_SystemicHypertension').checked ? 1 : 0,
+                RF_is_VitreousHemorrhage: document.getElementById('RF_is_VitreousHemorrhage').checked ? 1 : 0,
+                RF_is_on_Glaucoma_Med: document.getElementById('RF_is_on_Glaucoma_Med').checked ? 1 : 0,
+                RF_is_on_Steroid: document.getElementById('RF_is_on_Steroid').checked ? 1 : 0
+            };
+
+            // 3. Call the API
+            try {
+                // *** IMPORTANT: REPLACE THIS WITH YOUR HUGGING FACE URL ***
+                const API_URL = "https://lmunir-rd-risk-calc.hf.space/predict"; 
+
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(inputs),
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API Error: ${response.statusText}`);
+                }
+
+                const result = await response.json();
+                
+                if (result.error) {
+                    throw new Error(`Prediction Error: ${result.error}`);
+                }
+
+                // 4. Display the REAL result from the Random Forest model
+                const sssProbability = result.probability_of_success;
+                document.getElementById('result-sss').textContent = `${(sssProbability * 100).toFixed(0)}%`;
+
+                // TODO: Run the other models (VA, ERM, Cataract)
+                // For now, we only have the 90-day success model
+                // I will add a placeholder for the other models based on our old simple logic
+
+                // --- Placeholder VA Calculation ---
+                const vaCoeffs = { 'const': 0.1, 'Age': -0.0012, 'VA_LogMAR_PreOp': 0.3671, 'RF_is_Diabetes': 0.1538 };
+                let predicted_va_logmar = vaCoeffs.const + 
+                                          (vaCoeffs.Age * inputs.Age) +
+                                          (vaCoeffs.VA_LogMAR_PreOp * inputs.VA_LogMAR_PreOp) +
+                                          (vaCoeffs.RF_is_Diabetes * inputs.RF_is_Diabetes);
+                if (predicted_va_logmar < inputs.VA_LogMAR_PreOp) {
+                    predicted_va_logmar = inputs.VA_LogMAR_PreOp;
+                }
+                predicted_va_logmar = Math.max(0, predicted_va_logmar);
+                predicted_va_logmar = Math.min(3.0, predicted_va_logmar);
+                
+                const snellen = logMarToSnellen(predicted_va_logmar);
+                document.getElementById('result-va').textContent = `${snellen}`;
+                document.getElementById('result-va-logmar').textContent = `(LogMAR: ${predicted_va_logmar.toFixed(2)})`;
+
+
+            } catch (error) {
+                console.error("Error calculating risk:", error);
+                document.getElementById('result-sss').textContent = "Error";
+                document.getElementById('sss-model-note').textContent = error.message;
+            } finally {
+                // Re-enable the button
+                calculateBtn.disabled = false;
+                calculateBtn.textContent = "Calculate Risk";
             }
-
-            // Show VA result
-            const snellen = logMarToSnellen(predicted_va_logmar);
-            document.getElementById('result-va').textContent = `${snellen}`;
-            document.getElementById('result-va-logmar').textContent = `(LogMAR: ${predicted_va_logmar.toFixed(2)})`;
-
-            // Show Complication results
-            document.getElementById('result-erm').textContent = `${(ermProbability * 100).toFixed(0)}%`;
-            document.getElementById('result-cataract').textContent = cataractText;
         }
-
-        // Initial call to set helper text
-        updateVaHelper();
     </script>
 
 </body>
