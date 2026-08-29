@@ -179,11 +179,12 @@ is part of implementation, not a manual step left to the user.
 
 ## Open Items
 
-- **Tools links are placeholders until the lab-site `/tools` sub-project
-  happens.** For now, the RDS Risk Calculator and AMD CDS Tool cards will link
-  to their *current* location in this repo (`rds-calculator.html`,
-  `amd-tool.html`) so the links aren't dead; update these two links when the
-  lab-site tools page ships.
+- ~~Tools links are placeholders until the lab-site `/tools` sub-project
+  happens.~~ **Done (2026-08-30):** RDS Risk Calculator and AMD CDS Tool moved
+  to `pauluslab.github.io/tools/`; project cards link there (external,
+  `target="_blank" rel="noopener"`) instead of the local copies, which were
+  removed from this repo along with their now-unused Tailwind/Chart.js vendor
+  assets.
 - No profile photo provided — hero stays text-only.
 - LipiFlow meta-analysis DOI is unassigned (paper "In Press" per CV) — publication
   stays unlinked plain text until a DOI exists to link to.
