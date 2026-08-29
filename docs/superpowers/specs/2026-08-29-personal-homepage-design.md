@@ -57,6 +57,14 @@ does not build that home.
   section labels, sans-serif, uppercase-tracked), a one-line description in
   body serif/sans on the right, separated by the same hairline border
   (`#e8dfc8`) used elsewhere on the page. Newest first.
+- **"In a Nutshell" segments** (see below): inspired by Lauren DeLong's "In A
+  Nutshell: What I'm Doing" block list, adapted rather than copied — no icons,
+  no colored backgrounds per segment. Each segment is its own visually distinct
+  block: a short serif mini-heading (not the small-caps section-label style —
+  slightly larger, like a mini pull-quote) followed by one or two sentences,
+  each block separated from the next by a hairline border (`#e8dfc8`) and
+  generous vertical spacing, so the four segments read as genuinely separate
+  pieces rather than one flowing paragraph or a card grid.
 
 ## Page Structure (single page, in order)
 
@@ -73,7 +81,22 @@ does not build that home.
      Clinical Applications" in *Photonics*.
 3. **About** — one paragraph adapted from the CV's Professional Summary,
    written in first person, warmer/less resume-toned than the CV version.
-4. **Research Experience** — condensed list (not full CV detail) of current
+4. **In a Nutshell: What I'm Doing** — four short, separate segments giving a
+   quick-scan orientation to current active threads of work, grouped by theme
+   (not a re-listing of roles or projects — those get their own detailed
+   sections next). Each segment: a short mini-heading + 1-2 sentences.
+   - **Retinal Disease AI** — Building deep learning models (segmentation and
+     biomarker prediction) and risk calculators for retinal detachment and AMD
+     at the Paulus Lab.
+   - **Research Infrastructure** — Designing and deploying the lab's
+     project/task management dashboard, used lab-wide.
+   - **Glaucoma Surgical Outcomes** — Studying IOP control strategies and
+     surgical technique comparisons with the Wilmer Glaucoma ML Lab (Dr.
+     Yohanan).
+   - **Clinical Data & Epidemiology** — Open globe injury outcomes and
+     cataract curriculum research with Dr. Woreta's lab, paired with Epic EHR
+     data extraction pipelines (SQL, Python) supporting it.
+5. **Research Experience** — condensed list (not full CV detail) of current
    roles:
    - Paulus Lab, Retina Department — Research Intern, 07/2025–present
    - Wilmer Glaucoma ML Lab (Dr. Yohanan) — Visiting Student, 09/2025–present
@@ -81,7 +104,7 @@ does not build that home.
      09/2025–present
    Each as a one-line role + one-line focus, no bullet-level CV detail. Closing
    note pointing to the CV download for full detail.
-5. **Projects** — five featured cards, in this exact order (confirmed by user):
+6. **Projects** — five featured cards, in this exact order (confirmed by user):
    1. **RDS Risk Calculator** — elastic-net regression model (propensity-score-
       matched variable screening) predicting 180-day outcomes after RRD repair;
       deployed as a public web calculator. Link → lab site `/tools` page once
@@ -107,7 +130,7 @@ does not build that home.
    Each card: project name, 1–2 sentence description, tech-stack tag line. No
    screenshots for v1 (none available) — clean text cards matching the
    approved wireframe.
-6. **Selected Publications** — 3–4 highlighted papers (not all 21). Each
+7. **Selected Publications** — 3–4 highlighted papers (not all 21). Each
    publication title links directly to its DOI (small polish borrowed from
    sites like Nicole Paul's per-paper resource rows — we just do the title→DOI
    link, not a full PDF/Cite/Dataset row, since we don't have hosted PDFs):
@@ -121,7 +144,7 @@ does not build that home.
      Soc Nephrol*. 2024.
    Followed by "View all 21 publications on Google Scholar →" linking to
    https://scholar.google.com/citations?user=wp3qUZAAAAAJ&hl=en
-7. **Contact / Footer** — email (`lmunir2@jh.edu`, mailto), GitHub
+8. **Contact / Footer** — email (`lmunir2@jh.edu`, mailto), GitHub
    (github.com/lmunir1), Google Scholar (link above), Download CV (PDF).
 
 ## CV PDF
