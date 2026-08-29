@@ -49,13 +49,31 @@ does not build that home.
 - Section labels throughout: small uppercase sans-serif in the accent color,
   consistent with the hero eyebrow — this is the recurring visual motif tying
   sections together.
+- **News & Updates list style** (see below): inspired by the dated-update
+  pattern common on early-career researcher sites (e.g. Lauren DeLong's
+  "News & Announcements"), adapted to Warm Editorial rather than copied
+  outright — no dark cards or icons. Each entry is a plain row: a small
+  accent-colored month/year on the left (using the same terracotta as the
+  section labels, sans-serif, uppercase-tracked), a one-line description in
+  body serif/sans on the right, separated by the same hairline border
+  (`#e8dfc8`) used elsewhere on the page. Newest first.
 
 ## Page Structure (single page, in order)
 
 1. **Hero** — name, tagline, one-paragraph intro, CTA buttons.
-2. **About** — one paragraph adapted from the CV's Professional Summary,
+2. **News & Updates** — a short, dated, reverse-chronological list of recent
+   milestones. Signals the page is actively maintained rather than a one-time
+   snapshot; append new entries over time as things happen. Initial entries
+   (from confirmed CV dates — keep to what's verifiably dated, expand later):
+   - **09/2025** — Joined the Wilmer Glaucoma ML Lab (Dr. Yohanan) and the
+     Wilmer Eye Research Institute (Dr. Fasika Woreta) as a visiting student.
+   - **07/2025** — Started as a Research Intern in the Paulus Lab, Retina
+     Department.
+   - **2025** — Published "Retinal Laser Therapy Mechanisms, Innovations, and
+     Clinical Applications" in *Photonics*.
+3. **About** — one paragraph adapted from the CV's Professional Summary,
    written in first person, warmer/less resume-toned than the CV version.
-3. **Research Experience** — condensed list (not full CV detail) of current
+4. **Research Experience** — condensed list (not full CV detail) of current
    roles:
    - Paulus Lab, Retina Department — Research Intern, 07/2025–present
    - Wilmer Glaucoma ML Lab (Dr. Yohanan) — Visiting Student, 09/2025–present
@@ -63,7 +81,7 @@ does not build that home.
      09/2025–present
    Each as a one-line role + one-line focus, no bullet-level CV detail. Closing
    note pointing to the CV download for full detail.
-4. **Projects** — five featured cards, in this exact order (confirmed by user):
+5. **Projects** — five featured cards, in this exact order (confirmed by user):
    1. **RDS Risk Calculator** — elastic-net regression model (propensity-score-
       matched variable screening) predicting 180-day outcomes after RRD repair;
       deployed as a public web calculator. Link → lab site `/tools` page once
@@ -89,16 +107,21 @@ does not build that home.
    Each card: project name, 1–2 sentence description, tech-stack tag line. No
    screenshots for v1 (none available) — clean text cards matching the
    approved wireframe.
-5. **Selected Publications** — 3–4 highlighted papers (not all 21):
-   - Xie X, Munir L, Paulus YM. *Retinal Laser Therapy Mechanisms, Innovations,
-     and Clinical Applications.* Photonics. 2025.
+6. **Selected Publications** — 3–4 highlighted papers (not all 21). Each
+   publication title links directly to its DOI (small polish borrowed from
+   sites like Nicole Paul's per-paper resource rows — we just do the title→DOI
+   link, not a full PDF/Cite/Dataset row, since we don't have hosted PDFs):
+   - Xie X, Munir L, Paulus YM. [*Retinal Laser Therapy Mechanisms, Innovations,
+     and Clinical Applications.*](https://doi.org/10.3390/photonics12111043) Photonics. 2025.
    - Munir L, et al. Efficacy and safety of LipiFlow® ... meta-analysis. *Ocul
-     Surf*. 2024.
-   - Munir L, Chaudhary AJ, et al. Trend analysis of kidney stone-related
-     mortality, 1999-2020. *J Am Soc Nephrol*. 2024.
+     Surf*. 2024. — left as plain (unlinked) text; no DOI yet since it's marked
+     "In Press" on the CV. Link it once a DOI is assigned (see Open Items).
+   - Munir L, Chaudhary AJ, et al. [Trend analysis of kidney stone-related
+     mortality, 1999-2020.](https://doi.org/10.1681/ASN.0000000000000480) *J Am
+     Soc Nephrol*. 2024.
    Followed by "View all 21 publications on Google Scholar →" linking to
    https://scholar.google.com/citations?user=wp3qUZAAAAAJ&hl=en
-6. **Contact / Footer** — email (`lmunir2@jh.edu`, mailto), GitHub
+7. **Contact / Footer** — email (`lmunir2@jh.edu`, mailto), GitHub
    (github.com/lmunir1), Google Scholar (link above), Download CV (PDF).
 
 ## CV PDF
@@ -139,3 +162,8 @@ is part of implementation, not a manual step left to the user.
   `amd-tool.html`) so the links aren't dead; update these two links when the
   lab-site tools page ships.
 - No profile photo provided — hero stays text-only.
+- LipiFlow meta-analysis DOI is unassigned (paper "In Press" per CV) — publication
+  stays unlinked plain text until a DOI exists to link to.
+- The News & Updates list is intentionally short at launch (3 items, all with
+  solid CV-confirmed dates) — expected to grow as an ongoing maintenance habit,
+  not something to backfill with guessed dates now.
