@@ -11,291 +11,344 @@
 <link href="vendor/fonts/inter/inter.css" rel="stylesheet">
 <style>
   :root {
-    --bg: #faf6ee;
-    --text: #2b2620;
-    --text-secondary: #5c5548;
-    --accent: #b45309;
-    --border: #e8dfc8;
+    --bg: #ede0cf;
+    --card: #2b2620;
+    --card-alt: #3a332c;
+    --card-text: #faf6ee;
+    --card-text-secondary: #b3a696;
+    --accent: #e08942;
+    --accent-2: #d4a24c;
+    --line: rgba(255,255,255,0.09);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     background: var(--bg);
-    color: var(--text);
+    color: var(--card-text);
     font-family: 'Inter', Arial, sans-serif;
     line-height: 1.6;
-    padding-top: 60px;
+    padding-bottom: 90px;
   }
   a { color: inherit; }
-  .container { max-width: 820px; margin: 0 auto; padding: 0 40px 40px; }
+  .container { max-width: 720px; margin: 0 auto; padding: 40px 24px 0; }
+  h1, h2, .serif { font-family: 'Fraunces', Georgia, serif; }
 
-  /* Top nav */
-  .topnav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    background: var(--text);
-    padding: 10px 16px;
-    display: flex;
-    justify-content: center;
-    gap: 4px;
-    flex-wrap: wrap;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+  /* Header card */
+  .header-card {
+    background: var(--card);
+    border-radius: 20px;
+    padding: 32px 36px;
+    margin-bottom: 18px;
+    box-shadow: 0 10px 28px rgba(30,20,10,0.18);
   }
-  .topnav a {
-    font-family: 'Inter', Arial, sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    color: rgba(255,255,255,0.68);
-    text-decoration: none;
-    padding: 7px 14px;
-    border-radius: 999px;
-    transition: background 0.15s, color 0.15s;
-  }
-  .topnav a:hover { color: #fff; background: rgba(255,255,255,0.12); }
+  .header-eyebrow { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--card-text-secondary); margin-bottom: 12px; font-weight: 600; }
+  .header-name { font-size: 32px; font-weight: 700; margin-bottom: 6px; }
+  .header-tagline { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-size: 16px; color: var(--accent); }
 
-  /* Section blocks */
-  .section {
-    background: #fff;
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 40px;
-    margin-top: 20px;
-    box-shadow: 0 2px 10px rgba(43,38,32,0.05);
+  /* Tab card */
+  .tab-card {
+    background: var(--card);
+    border-radius: 20px;
+    padding: 40px 36px;
+    box-shadow: 0 10px 28px rgba(30,20,10,0.18);
   }
-  .section-label {
-    font-family: 'Inter', Arial, sans-serif;
-    font-size: 11px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 16px;
-    font-weight: 600;
-  }
-  h1, .serif { font-family: 'Fraunces', Georgia, serif; }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+  .tab-heading { font-size: 26px; font-weight: 700; margin-bottom: 10px; }
+  .tab-underline { width: 44px; height: 3px; background: var(--accent); border-radius: 2px; margin-bottom: 30px; }
 
-  /* Hero */
-  .hero {
-    background: #fff;
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 48px 40px;
-    margin-top: 20px;
-    box-shadow: 0 2px 10px rgba(43,38,32,0.05);
+  .block-label {
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--accent-2); font-weight: 700; margin-bottom: 14px;
   }
-  .hero-eyebrow { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; font-weight: 600; }
-  .hero h1 { font-size: 40px; font-weight: 700; margin-bottom: 10px; }
-  .hero-tagline { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-size: 17px; color: var(--accent); margin-bottom: 18px; font-weight: 400; }
-  .hero-intro { font-size: 15px; color: var(--text-secondary); max-width: 520px; margin-bottom: 26px; }
-  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+  .block { margin-bottom: 34px; }
+  .block:last-child { margin-bottom: 0; }
 
-  .btn { display: inline-block; font-family: 'Inter', Arial, sans-serif; font-size: 13px; font-weight: 600; padding: 11px 20px; border-radius: 5px; text-decoration: none; }
-  .btn-solid { background: var(--accent); color: #fff; }
+  .intro-text { font-size: 15px; color: var(--card-text-secondary); margin-bottom: 34px; }
+  .intro-text a { color: var(--accent-2); text-decoration: none; border-bottom: 1px solid var(--accent-2); }
+
+  .cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 34px; }
+  .btn { display: inline-block; font-size: 13px; font-weight: 600; padding: 11px 20px; border-radius: 8px; text-decoration: none; cursor: pointer; border: none; font-family: 'Inter', Arial, sans-serif; }
+  .btn-solid { background: var(--accent); color: #241a10; }
   .btn-solid:hover { opacity: 0.9; }
-  .btn-outline { border: 1px solid var(--accent); color: var(--accent); }
-  .btn-outline:hover { background: rgba(180,83,9,0.08); }
+  .btn-outline { border: 1px solid var(--accent); color: var(--accent); background: none; }
+  .btn-outline:hover { background: rgba(224,137,66,0.1); }
 
   /* News */
-  .news-item { display: flex; gap: 20px; padding: 14px 0; border-top: 1px solid var(--border); }
+  .news-item { display: flex; gap: 18px; padding: 12px 0; border-top: 1px solid var(--line); }
   .news-item:first-child { border-top: none; padding-top: 0; }
-  .news-date { flex: 0 0 90px; font-size: 12px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: var(--accent); }
-  .news-text { font-size: 14px; color: var(--text); }
-
-  /* About */
-  .about-text { font-size: 15px; color: var(--text-secondary); max-width: 620px; }
+  .news-date { flex: 0 0 84px; font-size: 12px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: var(--accent); }
+  .news-text { font-size: 14px; color: var(--card-text-secondary); }
+  .news-text em { color: var(--card-text); }
 
   /* Nutshell */
-  .nutshell-item { padding: 20px 0; border-top: 1px solid var(--border); }
+  .nutshell-item { display: flex; gap: 16px; padding: 16px 0; border-top: 1px solid var(--line); }
   .nutshell-item:first-child { border-top: none; padding-top: 0; }
-  .nutshell-title { font-family: 'Fraunces', Georgia, serif; font-size: 19px; font-weight: 600; margin-bottom: 6px; }
-  .nutshell-text { font-size: 14px; color: var(--text-secondary); max-width: 600px; }
+  .nutshell-icon {
+    flex: 0 0 38px; width: 38px; height: 38px; border-radius: 11px;
+    background: rgba(224,137,66,0.14); color: var(--accent);
+    display: flex; align-items: center; justify-content: center; font-size: 16px;
+  }
+  .nutshell-title { font-weight: 700; margin-bottom: 4px; font-size: 15px; }
+  .nutshell-text { font-size: 14px; color: var(--card-text-secondary); }
 
-  /* Research Experience */
-  .exp-item { padding: 16px 0; border-top: 1px solid var(--border); }
-  .exp-item:first-child { border-top: none; padding-top: 0; }
-  .exp-role { font-size: 15px; font-weight: 700; margin-bottom: 2px; }
-  .exp-meta { font-size: 12px; color: var(--text-secondary); margin-bottom: 6px; }
-  .exp-focus { font-size: 14px; color: var(--text-secondary); }
-  .exp-note { font-size: 13px; color: var(--text-secondary); margin-top: 18px; }
-  .exp-note a { color: var(--accent); }
+  /* Timeline (Experience) */
+  .timeline { position: relative; padding-left: 26px; }
+  .timeline::before { content: ''; position: absolute; left: 5px; top: 6px; bottom: 6px; width: 2px; background: var(--line); }
+  .timeline-item { position: relative; padding-bottom: 30px; }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-dot { position: absolute; left: -26px; top: 3px; width: 12px; height: 12px; border-radius: 50%; background: var(--card); box-shadow: 0 0 0 2px var(--accent) inset, 0 0 0 2px var(--accent); }
+  .timeline-role { font-weight: 700; font-size: 15px; margin-bottom: 2px; }
+  .timeline-meta { color: var(--accent-2); font-size: 12px; margin-bottom: 8px; }
+  .timeline-focus { color: var(--card-text-secondary); font-size: 14px; }
+  .tab-note { font-size: 13px; color: var(--card-text-secondary); margin-top: 28px; }
+  .tab-note a { color: var(--accent-2); }
 
   /* Projects */
-  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
-  .project-card { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 20px; }
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+  .project-card { background: var(--card-alt); border-radius: 12px; padding: 20px; }
   .project-title { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
   .project-tags { font-size: 11px; color: var(--accent); letter-spacing: 0.3px; margin-bottom: 12px; text-transform: uppercase; font-weight: 600; }
-  .project-desc { font-size: 13px; color: var(--text-secondary); margin-bottom: 14px; line-height: 1.55; }
-  .project-link { font-size: 12px; font-weight: 600; color: var(--accent); text-decoration: none; }
+  .project-desc { font-size: 13px; color: var(--card-text-secondary); margin-bottom: 14px; line-height: 1.55; }
+  .project-link { font-size: 12px; font-weight: 600; color: var(--accent-2); text-decoration: none; }
   .project-link:hover { text-decoration: underline; }
-  .project-private { font-size: 12px; color: var(--text-secondary); font-style: italic; }
+  .project-private { font-size: 12px; color: var(--card-text-secondary); font-style: italic; opacity: 0.8; }
 
   /* Publications */
-  .pub-item { padding: 14px 0; border-top: 1px solid var(--border); font-size: 14px; color: var(--text-secondary); }
+  .pub-item { padding: 14px 0; border-top: 1px solid var(--line); font-size: 14px; color: var(--card-text-secondary); }
   .pub-item:first-child { border-top: none; padding-top: 0; }
-  .pub-item a { color: var(--text); font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--accent); }
-  .pub-item a:hover { color: var(--accent); }
-  .pub-more { margin-top: 18px; font-size: 13px; }
+  .pub-item a { color: var(--card-text); font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--accent-2); }
+  .pub-item a:hover { color: var(--accent-2); }
+  .pub-more { margin-top: 20px; font-size: 13px; }
   .pub-more a { color: var(--accent); font-weight: 600; text-decoration: none; }
 
-  /* Contact / Footer */
-  .contact-links { display: flex; flex-wrap: wrap; gap: 10px 24px; font-size: 14px; }
-  .contact-links a { text-decoration: none; border-bottom: 1px solid var(--border); }
-  .contact-links a:hover { color: var(--accent); border-color: var(--accent); }
-  .footer-note { margin-top: 28px; font-size: 12px; color: var(--text-secondary); }
+  /* Contact */
+  .contact-list { display: flex; flex-direction: column; gap: 4px; }
+  .contact-item { display: flex; align-items: center; gap: 14px; padding: 14px 0; border-top: 1px solid var(--line); }
+  .contact-item:first-child { border-top: none; padding-top: 0; }
+  .contact-label { flex: 0 0 100px; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: var(--card-text-secondary); font-weight: 700; }
+  .contact-item a { font-size: 14px; color: var(--card-text); text-decoration: none; border-bottom: 1px solid var(--line); }
+  .contact-item a:hover { color: var(--accent); border-color: var(--accent); }
+  .footer-note { margin-top: 30px; font-size: 12px; color: var(--card-text-secondary); }
+
+  /* Bottom nav */
+  .bottomnav {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+    background: var(--card);
+    display: flex; justify-content: center; gap: 30px;
+    padding: 16px 20px;
+    box-shadow: 0 -6px 20px rgba(0,0,0,0.18);
+  }
+  .navbtn {
+    background: none; border: none; cursor: pointer;
+    font-family: 'Inter', Arial, sans-serif; font-size: 13px; font-weight: 600;
+    color: var(--card-text-secondary); padding: 4px 2px;
+  }
+  .navbtn:hover { color: var(--card-text); }
+  .navbtn.active { color: var(--accent); }
 
   @media (max-width: 640px) {
-    body { padding-top: 88px; }
-    .container { padding: 0 16px 24px; }
-    .topnav { justify-content: flex-start; overflow-x: auto; gap: 2px; }
-    .topnav a { padding: 6px 10px; white-space: nowrap; }
-    .hero, .section { padding: 28px 22px; }
-    .hero h1 { font-size: 30px; }
-    .hero-actions { flex-direction: column; }
+    .container { padding: 24px 16px 0; }
+    .header-card, .tab-card { padding: 26px 22px; }
+    .header-name { font-size: 26px; }
+    .cta-row { flex-direction: column; }
     .btn { text-align: center; }
     .news-item { flex-direction: column; gap: 4px; }
     .news-date { flex: none; }
+    .bottomnav { gap: 14px; padding: 12px 10px; overflow-x: auto; justify-content: flex-start; }
+    .navbtn { white-space: nowrap; }
+    .contact-item { flex-direction: column; align-items: flex-start; gap: 4px; }
   }
 </style>
 </head>
 <body>
-<nav class="topnav">
-  <a href="#">Home</a>
-  <a href="#news">News</a>
-  <a href="#about">About</a>
-  <a href="#nutshell">Now</a>
-  <a href="#experience">Experience</a>
-  <a href="#projects">Projects</a>
-  <a href="#publications">Papers</a>
-  <a href="#contact">Contact</a>
-</nav>
 <div class="container">
 
-<section class="hero">
-  <div class="hero-eyebrow">Wilmer Eye Institute · Baltimore</div>
-  <h1>Luqman Munir</h1>
-  <div class="hero-tagline">on retinas, research, and building things</div>
-  <p class="hero-intro">Medical student researcher at Johns Hopkins Wilmer Eye Institute, working on ophthalmology AI, retinal imaging, and the software that supports both.</p>
-  <div class="hero-actions">
-    <a href="#projects" class="btn btn-solid">View Projects</a>
-    <a href="assets/Luqman-Munir-CV.pdf" class="btn btn-outline">Download CV</a>
+  <div class="header-card">
+    <div class="header-eyebrow">Wilmer Eye Institute · Baltimore</div>
+    <div class="header-name">Luqman Munir</div>
+    <div class="header-tagline">on retinas, research, and building things</div>
   </div>
-</section>
 
-<section class="section" id="news">
-  <h2 class="section-label">News &amp; Updates</h2>
-  <div class="news-item">
-    <div class="news-date">2025</div>
-    <div class="news-text">Published "Retinal Laser Therapy Mechanisms, Innovations, and Clinical Applications" in <em>Photonics</em>.</div>
-  </div>
-  <div class="news-item">
-    <div class="news-date">Sep 2025</div>
-    <div class="news-text">Joined the Wilmer Glaucoma ML Lab (Dr. Yohanan) and the Wilmer Eye Research Institute (Dr. Fasika Woreta) as a visiting student.</div>
-  </div>
-  <div class="news-item">
-    <div class="news-date">Jul 2025</div>
-    <div class="news-text">Started as a Research Intern in the Paulus Lab, Retina Department.</div>
-  </div>
-</section>
+  <div class="tab-card">
 
-<section class="section" id="about">
-  <h2 class="section-label">About</h2>
-  <p class="about-text">I'm a medical student researching ophthalmology AI and retinal imaging at Johns Hopkins Wilmer Eye Institute. My work spans deep learning models for retinal disease, large-scale clinical database analysis, and the software infrastructure that keeps a research lab running. Outside the lab, I've published 21 peer-reviewed articles on population health and evidence-based clinical care.</p>
-</section>
+    <div class="tab-panel active" id="tab-about">
+      <div class="tab-heading">About</div>
+      <div class="tab-underline"></div>
 
-<section class="section" id="nutshell">
-  <h2 class="section-label">In a Nutshell: What I'm Doing</h2>
-  <div class="nutshell-item">
-    <div class="nutshell-title">Retinal Disease AI</div>
-    <p class="nutshell-text">Building deep learning models — segmentation and biomarker prediction — and risk calculators for retinal detachment and AMD at the Paulus Lab.</p>
-  </div>
-  <div class="nutshell-item">
-    <div class="nutshell-title">Research Infrastructure</div>
-    <p class="nutshell-text">Designing and deploying the lab's project/task management dashboard, used lab-wide.</p>
-  </div>
-  <div class="nutshell-item">
-    <div class="nutshell-title">Glaucoma Surgical Outcomes</div>
-    <p class="nutshell-text">Studying IOP control strategies and surgical technique comparisons with the Wilmer Glaucoma ML Lab (Dr. Yohanan).</p>
-  </div>
-  <div class="nutshell-item">
-    <div class="nutshell-title">Clinical Data &amp; Epidemiology</div>
-    <p class="nutshell-text">Open globe injury outcomes and cataract curriculum research with Dr. Woreta's lab, paired with Epic EHR data extraction pipelines (SQL, Python) supporting it.</p>
-  </div>
-</section>
+      <p class="intro-text">I'm a medical student researching ophthalmology AI and retinal imaging at Johns Hopkins Wilmer Eye Institute. My work spans deep learning models for retinal disease, large-scale clinical database analysis, and the software infrastructure that keeps a research lab running. Outside the lab, I've published 21 peer-reviewed articles on population health and evidence-based clinical care.</p>
 
-<section class="section" id="experience">
-  <h2 class="section-label">Research Experience</h2>
-  <div class="exp-item">
-    <div class="exp-role">Research Intern, Paulus Lab, Retina Department</div>
-    <div class="exp-meta">Johns Hopkins Wilmer Eye Institute · Jul 2025 – present</div>
-    <div class="exp-focus">Retinal disease AI, database-driven clinical research, and lab research infrastructure.</div>
-  </div>
-  <div class="exp-item">
-    <div class="exp-role">Visiting Student, Wilmer Glaucoma ML Lab (Dr. Yohanan)</div>
-    <div class="exp-meta">Johns Hopkins Wilmer Eye Institute · Sep 2025 – present</div>
-    <div class="exp-focus">IOP prediction and surgical outcome comparisons for glaucoma.</div>
-  </div>
-  <div class="exp-item">
-    <div class="exp-role">Visiting Student, Wilmer Eye Research Institute (Dr. Fasika Woreta)</div>
-    <div class="exp-meta">Johns Hopkins Wilmer Eye Institute · Sep 2025 – present</div>
-    <div class="exp-focus">Open globe injury outcomes, cataract curriculum research, and EHR data extraction.</div>
-  </div>
-  <p class="exp-note">Full role-by-role detail, certifications, and presentations are in the <a href="assets/Luqman-Munir-CV.pdf">full CV</a>.</p>
-</section>
+      <div class="cta-row">
+        <a href="#" class="btn btn-solid" onclick="showTab('projects'); return false;">View Projects</a>
+        <a href="assets/Luqman-Munir-CV.pdf" class="btn btn-outline">Download CV</a>
+      </div>
 
-<section class="section" id="projects">
-  <h2 class="section-label">Projects</h2>
-  <div class="projects-grid">
-    <div class="project-card">
-      <div class="project-title">RDS Risk Calculator</div>
-      <div class="project-tags">Python · scikit-learn · Web calculator</div>
-      <p class="project-desc">Elastic-net regression model, with propensity-score-matched variable screening, predicting 180-day outcomes after RRD repair — deployed as a public web calculator.</p>
-      <a href="https://pauluslab.github.io/tools/rds-calculator.html" class="project-link" target="_blank" rel="noopener">Open calculator →</a>
+      <div class="block">
+        <div class="block-label">News &amp; Updates</div>
+        <div class="news-item">
+          <div class="news-date">2025</div>
+          <div class="news-text">Published "Retinal Laser Therapy Mechanisms, Innovations, and Clinical Applications" in <em>Photonics</em>.</div>
+        </div>
+        <div class="news-item">
+          <div class="news-date">Sep 2025</div>
+          <div class="news-text">Joined the Wilmer Glaucoma ML Lab (Dr. Yohanan) and the Wilmer Eye Research Institute (Dr. Fasika Woreta) as a visiting student.</div>
+        </div>
+        <div class="news-item">
+          <div class="news-date">Jul 2025</div>
+          <div class="news-text">Started as a Research Intern in the Paulus Lab, Retina Department.</div>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-label">In a Nutshell: What I'm Doing</div>
+        <div class="nutshell-item">
+          <div class="nutshell-icon">&#128065;</div>
+          <div>
+            <div class="nutshell-title">Retinal Disease AI</div>
+            <p class="nutshell-text">Building deep learning models — segmentation and biomarker prediction — and risk calculators for retinal detachment and AMD at the Paulus Lab.</p>
+          </div>
+        </div>
+        <div class="nutshell-item">
+          <div class="nutshell-icon">&#128736;</div>
+          <div>
+            <div class="nutshell-title">Research Infrastructure</div>
+            <p class="nutshell-text">Designing and deploying the lab's project/task management dashboard, used lab-wide.</p>
+          </div>
+        </div>
+        <div class="nutshell-item">
+          <div class="nutshell-icon">&#128202;</div>
+          <div>
+            <div class="nutshell-title">Glaucoma Surgical Outcomes</div>
+            <p class="nutshell-text">Studying IOP control strategies and surgical technique comparisons with the Wilmer Glaucoma ML Lab (Dr. Yohanan).</p>
+          </div>
+        </div>
+        <div class="nutshell-item">
+          <div class="nutshell-icon">&#128203;</div>
+          <div>
+            <div class="nutshell-title">Clinical Data &amp; Epidemiology</div>
+            <p class="nutshell-text">Open globe injury outcomes and cataract curriculum research with Dr. Woreta's lab, paired with Epic EHR data extraction pipelines (SQL, Python) supporting it.</p>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="project-card">
-      <div class="project-title">OCT Segmentation Pipeline</div>
-      <div class="project-tags">PyTorch · SegFormer-B4 · MONAI Label</div>
-      <p class="project-desc">Deep learning segmentation model with active learning, automatically segmenting retinal detachment biomarkers on OCT images.</p>
-      <div class="project-private">Private research repository</div>
+
+    <div class="tab-panel" id="tab-experience">
+      <div class="tab-heading">Experience</div>
+      <div class="tab-underline"></div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-role">Research Intern, Paulus Lab, Retina Department</div>
+          <div class="timeline-meta">Johns Hopkins Wilmer Eye Institute · Jul 2025 – present</div>
+          <div class="timeline-focus">Retinal disease AI, database-driven clinical research, and lab research infrastructure.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-role">Visiting Student, Wilmer Glaucoma ML Lab (Dr. Yohanan)</div>
+          <div class="timeline-meta">Johns Hopkins Wilmer Eye Institute · Sep 2025 – present</div>
+          <div class="timeline-focus">IOP prediction and surgical outcome comparisons for glaucoma.</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-role">Visiting Student, Wilmer Eye Research Institute (Dr. Fasika Woreta)</div>
+          <div class="timeline-meta">Johns Hopkins Wilmer Eye Institute · Sep 2025 – present</div>
+          <div class="timeline-focus">Open globe injury outcomes, cataract curriculum research, and EHR data extraction.</div>
+        </div>
+      </div>
+      <p class="tab-note">Full role-by-role detail, certifications, and presentations are in the <a href="assets/Luqman-Munir-CV.pdf">full CV</a>.</p>
     </div>
-    <div class="project-card">
-      <div class="project-title">RD OCT Biomarker Model</div>
-      <div class="project-tags">Python · Biomarker modeling</div>
-      <p class="project-desc">Downstream model that takes the segmented biomarkers from the pipeline above and predicts surgical outcomes from them.</p>
-      <div class="project-private">Private research repository</div>
+
+    <div class="tab-panel" id="tab-projects">
+      <div class="tab-heading">Projects</div>
+      <div class="tab-underline"></div>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-title">RDS Risk Calculator</div>
+          <div class="project-tags">Python · scikit-learn · Web calculator</div>
+          <p class="project-desc">Elastic-net regression model, with propensity-score-matched variable screening, predicting 180-day outcomes after RRD repair — deployed as a public web calculator.</p>
+          <a href="https://pauluslab.github.io/tools/rds-calculator.html" class="project-link" target="_blank" rel="noopener">Open calculator →</a>
+        </div>
+        <div class="project-card">
+          <div class="project-title">OCT Segmentation Pipeline</div>
+          <div class="project-tags">PyTorch · SegFormer-B4 · MONAI Label</div>
+          <p class="project-desc">Deep learning segmentation model with active learning, automatically segmenting retinal detachment biomarkers on OCT images.</p>
+          <div class="project-private">Private research repository</div>
+        </div>
+        <div class="project-card">
+          <div class="project-title">RD OCT Biomarker Model</div>
+          <div class="project-tags">Python · Biomarker modeling</div>
+          <p class="project-desc">Downstream model that takes the segmented biomarkers from the pipeline above and predicts surgical outcomes from them.</p>
+          <div class="project-private">Private research repository</div>
+        </div>
+        <div class="project-card">
+          <div class="project-title">AMD CDS Tool</div>
+          <div class="project-tags">Web app · Clinical decision support</div>
+          <p class="project-desc">Clinical decision support tool for age-related macular degeneration, built for use alongside the RDS Risk Calculator.</p>
+          <a href="https://pauluslab.github.io/tools/amd-tool.html" class="project-link" target="_blank" rel="noopener">Open tool →</a>
+        </div>
+        <div class="project-card">
+          <div class="project-title">Lab Research Dashboard</div>
+          <div class="project-tags">Next.js · PostgreSQL · Prisma</div>
+          <p class="project-desc">Full-stack project, task, conference, and resource management platform built and deployed for lab-wide use, including a mobile-optimized interface.</p>
+          <div class="project-private">Private research repository</div>
+        </div>
+      </div>
     </div>
-    <div class="project-card">
-      <div class="project-title">AMD CDS Tool</div>
-      <div class="project-tags">Web app · Clinical decision support</div>
-      <p class="project-desc">Clinical decision support tool for age-related macular degeneration, built for use alongside the RDS Risk Calculator.</p>
-      <a href="https://pauluslab.github.io/tools/amd-tool.html" class="project-link" target="_blank" rel="noopener">Open tool →</a>
+
+    <div class="tab-panel" id="tab-publications">
+      <div class="tab-heading">Publications</div>
+      <div class="tab-underline"></div>
+      <div class="pub-item">Xie X, Munir L, Paulus YM. <a href="https://doi.org/10.3390/photonics12111043" target="_blank" rel="noopener">Retinal Laser Therapy Mechanisms, Innovations, and Clinical Applications.</a> Photonics. 2025.</div>
+      <div class="pub-item">Munir L, et al. Efficacy and safety of LipiFlow® in the treatment of dry eye disease due to Meibomian gland dysfunction: an updated meta-analysis of randomized controlled trials. Ocul Surf. 2024. <em>(In Press)</em></div>
+      <div class="pub-item">Munir L, Chaudhary AJ, Ammar ur Rahman M, Khalid A, Ijaz A. <a href="https://doi.org/10.1681/ASN.0000000000000480" target="_blank" rel="noopener">Trend analysis of kidney stone-related mortality, 1999-2020.</a> J Am Soc Nephrol. 2024.</div>
+      <div class="pub-more"><a href="https://scholar.google.com/citations?user=wp3qUZAAAAAJ&hl=en" target="_blank" rel="noopener">View all 21 publications on Google Scholar →</a></div>
     </div>
-    <div class="project-card">
-      <div class="project-title">Lab Research Dashboard</div>
-      <div class="project-tags">Next.js · PostgreSQL · Prisma</div>
-      <p class="project-desc">Full-stack project, task, conference, and resource management platform built and deployed for lab-wide use, including a mobile-optimized interface.</p>
-      <div class="project-private">Private research repository</div>
+
+    <div class="tab-panel" id="tab-contact">
+      <div class="tab-heading">Contact</div>
+      <div class="tab-underline"></div>
+      <div class="contact-list">
+        <div class="contact-item">
+          <div class="contact-label">Email</div>
+          <a href="mailto:lmunir2@jh.edu">lmunir2@jh.edu</a>
+        </div>
+        <div class="contact-item">
+          <div class="contact-label">GitHub</div>
+          <a href="https://github.com/lmunir1" target="_blank" rel="noopener">github.com/lmunir1</a>
+        </div>
+        <div class="contact-item">
+          <div class="contact-label">Scholar</div>
+          <a href="https://scholar.google.com/citations?user=wp3qUZAAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+        </div>
+        <div class="contact-item">
+          <div class="contact-label">CV</div>
+          <a href="assets/Luqman-Munir-CV.pdf">Download CV</a>
+        </div>
+      </div>
+      <p class="footer-note">© 2026 Luqman Munir</p>
     </div>
+
   </div>
-</section>
-
-<section class="section" id="publications">
-  <h2 class="section-label">Selected Publications</h2>
-  <div class="pub-item">Xie X, Munir L, Paulus YM. <a href="https://doi.org/10.3390/photonics12111043" target="_blank" rel="noopener">Retinal Laser Therapy Mechanisms, Innovations, and Clinical Applications.</a> Photonics. 2025.</div>
-  <div class="pub-item">Munir L, et al. Efficacy and safety of LipiFlow® in the treatment of dry eye disease due to Meibomian gland dysfunction: an updated meta-analysis of randomized controlled trials. Ocul Surf. 2024. <em>(In Press)</em></div>
-  <div class="pub-item">Munir L, Chaudhary AJ, Ammar ur Rahman M, Khalid A, Ijaz A. <a href="https://doi.org/10.1681/ASN.0000000000000480" target="_blank" rel="noopener">Trend analysis of kidney stone-related mortality, 1999-2020.</a> J Am Soc Nephrol. 2024.</div>
-  <div class="pub-more"><a href="https://scholar.google.com/citations?user=wp3qUZAAAAAJ&hl=en" target="_blank" rel="noopener">View all 21 publications on Google Scholar →</a></div>
-</section>
-
-<section class="section" id="contact">
-  <h2 class="section-label">Contact</h2>
-  <div class="contact-links">
-    <a href="mailto:lmunir2@jh.edu">lmunir2@jh.edu</a>
-    <a href="https://github.com/lmunir1" target="_blank" rel="noopener">GitHub</a>
-    <a href="https://scholar.google.com/citations?user=wp3qUZAAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
-    <a href="assets/Luqman-Munir-CV.pdf">Download CV</a>
-  </div>
-  <p class="footer-note">© 2026 Luqman Munir</p>
-</section>
-
 </div>
+
+<nav class="bottomnav">
+  <button class="navbtn active" data-tab="about" onclick="showTab('about')">About</button>
+  <button class="navbtn" data-tab="experience" onclick="showTab('experience')">Experience</button>
+  <button class="navbtn" data-tab="projects" onclick="showTab('projects')">Projects</button>
+  <button class="navbtn" data-tab="publications" onclick="showTab('publications')">Publications</button>
+  <button class="navbtn" data-tab="contact" onclick="showTab('contact')">Contact</button>
+</nav>
+
+<script>
+  function showTab(name) {
+    document.querySelectorAll('.tab-panel').forEach(function (el) {
+      el.classList.remove('active');
+    });
+    document.getElementById('tab-' + name).classList.add('active');
+    document.querySelectorAll('.navbtn').forEach(function (el) {
+      el.classList.toggle('active', el.getAttribute('data-tab') === name);
+    });
+    window.scrollTo(0, 0);
+  }
+</script>
 </body>
 </html>

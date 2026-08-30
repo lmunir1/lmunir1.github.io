@@ -3,6 +3,23 @@
 **Repo:** `lmunir1.github.io` (personal GitHub Pages site)
 **Date:** 2026-08-29
 
+> **Revision (2026-08-30):** The architecture below (single scrolling page,
+> "Warm Editorial" cream/white palette) was superseded by a tabbed layout
+> modeled on laurendelong21.github.io — a persistent dark header card, a
+> fixed bottom nav (About / Experience / Projects / Publications / Contact),
+> and exactly one dark card panel visible at a time (vanilla JS show/hide,
+> no page reload, scroll resets to top on switch). Palette shifted to a warm
+> reskin of that reference: sandy page background (`#ede0cf`), warm charcoal
+> cards (`#2b2620`, matching the old `--text` color), cream card text
+> (`#faf6ee`), bright terracotta accent (`#e08942`) and warm gold secondary
+> accent (`#d4a24c`). Content mapping is unchanged (same bio, news items,
+> nutshell segments, experience roles, project cards, publications, contact
+> links) — only the container structure, palette, and the addition of a
+> small vanilla-JS tab switcher changed. The single-page section list and
+> "Warm Editorial" hex values below are kept for history; treat the current
+> `index.html` as authoritative over this section for anything they conflict
+> on.
+
 ## Background
 
 `index.html` in this repo currently hosts the RDS Risk Calculator and AMD Clinical
