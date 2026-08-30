@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="hsl(240,1%,25%)"/>
+      <stop offset="100%" stop-color="hsl(0,0%,19%)"/>
+    </linearGradient>
+  </defs>
+  <circle cx="60" cy="60" r="58" fill="url(#bg)" stroke="hsl(45,54%,58%)" stroke-width="2"/>
+  <text x="60" y="72" font-family="Poppins, Arial, sans-serif" font-size="42" font-weight="600" fill="hsl(45,100%,72%)" text-anchor="middle">LM</text>
+</svg>
