@@ -35,12 +35,23 @@
 
   /* Header card */
   .header-card {
+    position: relative;
     background: var(--card);
     border-radius: 20px;
     padding: 32px 36px;
     margin-bottom: 18px;
     box-shadow: 0 16px 30px rgba(0,0,0,0.25);
   }
+  .header-badge {
+    position: absolute; top: -14px; right: -14px;
+    background: var(--card); color: var(--accent-bright);
+    font-family: 'Inter', Arial, sans-serif; font-size: 12px; font-weight: 600;
+    border: none; cursor: pointer;
+    padding: 10px 16px;
+    border-radius: 0 16px 0 16px;
+    box-shadow: 0 12px 24px rgba(0,0,0,0.28);
+  }
+  .header-badge:hover { color: var(--card-text); }
   .header-eyebrow { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--card-text-secondary); margin-bottom: 12px; font-weight: 600; }
   .header-name { font-size: 32px; font-weight: 700; margin-bottom: 6px; }
   .header-tagline { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-size: 16px; color: var(--accent); }
@@ -81,15 +92,20 @@
   .news-text { font-size: 14px; color: var(--card-text-secondary); }
   .news-text em { color: var(--card-text); }
 
-  /* Nutshell */
-  .nutshell-item { display: flex; gap: 16px; padding: 16px 0; border-top: 1px solid var(--line); }
-  .nutshell-item:first-child { border-top: none; padding-top: 0; }
-  .nutshell-icon {
-    flex: 0 0 38px; width: 38px; height: 38px; border-radius: 11px;
-    background: rgba(206,177,90,0.14); color: var(--accent);
-    display: flex; align-items: center; justify-content: center; font-size: 16px;
+  /* Nutshell — each item is its own nested card, like the reference's service-item grid */
+  .nutshell-grid { display: grid; gap: 16px; }
+  .nutshell-item {
+    display: flex; gap: 18px; align-items: flex-start;
+    background: linear-gradient(to right bottom, rgba(255,255,255,0.06), rgba(255,255,255,0) 60%), var(--card-alt);
+    border-radius: 14px; padding: 24px;
+    box-shadow: 0 12px 24px rgba(0,0,0,0.22);
   }
-  .nutshell-title { font-weight: 700; margin-bottom: 4px; font-size: 15px; }
+  .nutshell-icon {
+    flex: 0 0 44px; width: 44px; height: 44px; border-radius: 12px;
+    background: rgba(206,177,90,0.16); color: var(--accent);
+    display: flex; align-items: center; justify-content: center; font-size: 19px;
+  }
+  .nutshell-title { font-weight: 700; margin-bottom: 6px; font-size: 15px; }
   .nutshell-text { font-size: 14px; color: var(--card-text-secondary); }
 
   /* Timeline (Experience) */
@@ -168,6 +184,7 @@
 <div class="container">
 
   <div class="header-card">
+    <button class="header-badge" onclick="showTab('contact')">Show Contacts</button>
     <div class="header-eyebrow">Wilmer Eye Institute · Baltimore</div>
     <div class="header-name">Luqman Munir</div>
     <div class="header-tagline">on retinas, research, and building things</div>
@@ -204,32 +221,34 @@
 
       <div class="block">
         <div class="block-label">In a Nutshell: What I'm Doing</div>
-        <div class="nutshell-item">
-          <div class="nutshell-icon">&#128065;</div>
-          <div>
-            <div class="nutshell-title">Retinal Disease AI</div>
-            <p class="nutshell-text">Building deep learning models — segmentation and biomarker prediction — and risk calculators for retinal detachment and AMD at the Paulus Lab.</p>
+        <div class="nutshell-grid">
+          <div class="nutshell-item">
+            <div class="nutshell-icon">&#128065;</div>
+            <div>
+              <div class="nutshell-title">Retinal Disease AI</div>
+              <p class="nutshell-text">Building deep learning models — segmentation and biomarker prediction — and risk calculators for retinal detachment and AMD at the Paulus Lab.</p>
+            </div>
           </div>
-        </div>
-        <div class="nutshell-item">
-          <div class="nutshell-icon">&#128736;</div>
-          <div>
-            <div class="nutshell-title">Research Infrastructure</div>
-            <p class="nutshell-text">Designing and deploying the lab's project/task management dashboard, used lab-wide.</p>
+          <div class="nutshell-item">
+            <div class="nutshell-icon">&#128736;</div>
+            <div>
+              <div class="nutshell-title">Research Infrastructure</div>
+              <p class="nutshell-text">Designing and deploying the lab's project/task management dashboard, used lab-wide.</p>
+            </div>
           </div>
-        </div>
-        <div class="nutshell-item">
-          <div class="nutshell-icon">&#128202;</div>
-          <div>
-            <div class="nutshell-title">Glaucoma Surgical Outcomes</div>
-            <p class="nutshell-text">Studying IOP control strategies and surgical technique comparisons with the Wilmer Glaucoma ML Lab (Dr. Yohanan).</p>
+          <div class="nutshell-item">
+            <div class="nutshell-icon">&#128202;</div>
+            <div>
+              <div class="nutshell-title">Glaucoma Surgical Outcomes</div>
+              <p class="nutshell-text">Studying IOP control strategies and surgical technique comparisons with the Wilmer Glaucoma ML Lab (Dr. Yohanan).</p>
+            </div>
           </div>
-        </div>
-        <div class="nutshell-item">
-          <div class="nutshell-icon">&#128203;</div>
-          <div>
-            <div class="nutshell-title">Clinical Data &amp; Epidemiology</div>
-            <p class="nutshell-text">Open globe injury outcomes and cataract curriculum research with Dr. Woreta's lab, paired with Epic EHR data extraction pipelines (SQL, Python) supporting it.</p>
+          <div class="nutshell-item">
+            <div class="nutshell-icon">&#128203;</div>
+            <div>
+              <div class="nutshell-title">Clinical Data &amp; Epidemiology</div>
+              <p class="nutshell-text">Open globe injury outcomes and cataract curriculum research with Dr. Woreta's lab, paired with Epic EHR data extraction pipelines (SQL, Python) supporting it.</p>
+            </div>
           </div>
         </div>
       </div>
